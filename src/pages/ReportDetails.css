@@ -1,0 +1,59 @@
+.page {
+  padding: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.page h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.page h3 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.form-container {
+  margin-top: 20px;
+}
+
+.form-row {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.form-label {
+  flex: 0 0 60%;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: normal;
+}
+
+.form-value {
+  flex: 0 0 40%;
+  text-align: left;
+}
+
+.form-value input {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+}
+
+.action-buttons {
+  margin-top: 30px;
+}
+
+.action-buttons button {
+  margin-right: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+}

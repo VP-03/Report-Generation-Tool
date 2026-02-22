@@ -1,0 +1,53 @@
+.final-report {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 50px;
+  font-family: "Times New Roman", serif;
+  color: black;
+}
+
+.report-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.report-row {
+  display: grid;
+  grid-template-columns: 60px 380px 20px 1fr;
+  margin-bottom: 8px;
+}
+
+.number {
+  text-align: right;
+}
+
+.colon {
+  text-align: center;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.certification {
+  margin-top: 40px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+.print-btn {
+  margin-top: 30px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+@media print {
+  .print-btn {
+    display: none;
+  }
+}
