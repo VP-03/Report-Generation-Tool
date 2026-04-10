@@ -87,6 +87,42 @@ def add_customer(data: CustomerCreate):
     conn.close()
     return {"customer_id": customer_id, "message": "Customer added successfully"}
 
+# ── ALL REPORTS (home page) ───────────────────────────────────────────────────
+@app.get("/reports")
+def get_all_reports():
+    conn = get_db()
+    cursor = conn.cursor()
+
+    meta_cols = get_column_names(conn, "report_metadata")
+
+    optional_cols = ["report_no", "valid_upto", "report_done_by", "report_date"]
+    select_extras = ", ".join(
+        f"r.{col}" for col in optional_cols if col in meta_cols
+    )
+    if select_extras:
+        select_extras = ", " + select_extras
+
+    order_col = "r.report_date" if "report_date" in meta_cols else "r.report_id"
+
+    cursor.execute(f"""
+        SELECT
+            r.report_id,
+            r.customer_id,
+            r.formtype_id,
+            r.report_status
+            {select_extras},
+            c.customer_name,
+            ft.formtype_name
+        FROM report_metadata r
+        JOIN customers c ON r.customer_id = c.customer_id
+        JOIN form_types ft ON r.formtype_id = ft.formtype_id
+        ORDER BY {order_col} DESC, r.report_id DESC
+    """)
+
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
 # ── REPORTS BY CUSTOMER ───────────────────────────────────────────────────────
 @app.get("/customers/{customer_id}/reports")
 def get_reports_by_customer(customer_id: int):
